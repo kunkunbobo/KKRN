@@ -14,7 +14,10 @@ import {connect} from 'react-redux';
 import KKNavigator from './navgation';
 import BasePage from './base/basePage';
 import TabNavigator from 'react-native-tab-navigator'
-import Icon from 'react-native-vector-icons/EvilIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {defaultColor} from '../utility/themes';
+import CarTrack  from './carTrack';
+import UserInfo from './userInfo';
 
 @connect(({test})=>{
     return {
@@ -22,13 +25,13 @@ import Icon from 'react-native-vector-icons/EvilIcons';
     }
 })
 
-export default class Main extends BasePage {
+export default class Main extends Component {
 
 
     constructor(props){
         super(props);
         this.state = {
-            selectedTab:'home'
+            selectedTabIndex:0
         }
     }
 
@@ -37,35 +40,35 @@ export default class Main extends BasePage {
     }
 
 
+    tabBarSelect(index){
+        this.setState({ selectedTabIndex: index });
+    }
+
 
     render() {
 
-        return  super.render(
-            <View>
-                <TabNavigator tabBarStyle={{ backgroundColor:'white' }} style={{backgroundColor: 'white'}}>
+        return  (
+            <View style={{flex:1,backgroundColor:'red'}}>
+                <TabNavigator tabBarStyle={{ backgroundColor:defaultColor.backgroundColor }} style={{backgroundColor: defaultColor.backgroundColor}}>
                     <TabNavigator.Item
-                        title="Home"
-                        selected={this.state.selectedTab === 'home'}
-                        renderIcon={() => <Icon name={ 'ios-home' } size={30} color={'gray'}/>}
-                        renderSelectedIcon={() => <Icon name={ 'ios-home' } size={30} color={'#4E78E7'}/>}
-                        onPress={() => this.setState({ selectedTab: 'home' })}>
-                        <View/>
+                        title="车辆追踪"
+                        selected={this.state.selectedTabIndex === 0}
+                        renderIcon={() => <Icon name={ 'car' } size={20} color={defaultColor.grayColor}/>}
+                        renderSelectedIcon={() => <Icon name={ 'car' } size={20} color={defaultColor.greenColor}/>}
+                        onPress={() =>this.tabBarSelect(0) }
+                        titleStyle={{color:defaultColor.grayColor}}
+                        selectedTitleStyle={{color:defaultColor.greenColor}}>
+                        <CarTrack navigator={this.props.navigator}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
-                        title="Playground"
-                        selected={this.state.selectedTab === 'playground'}
-                        renderIcon={() => <Icon name={ 'ios-more' } size={30} color={'gray'}/>}
-                        renderSelectedIcon={() => <Icon name={ 'ios-more' } size={30} color={'#4E78E7'}/>}
-                        onPress={() => this.setState({ selectedTab: 'playground' })}>
-                        <View/>
-                    </TabNavigator.Item>
-                    <TabNavigator.Item
-                        title="Other"
-                        selected={this.state.selectedTab === 'other'}
-                        renderIcon={() => <Icon name={ 'ios-more' } size={30} color={'gray'}/>}
-                        renderSelectedIcon={() => <Icon name={ 'ios-more' } size={30} color={'#4E78E7'}/>}
-                        onPress={() => this.setState({ selectedTab: 'other' })}>
-                        <View/>
+                        title="个人中心"
+                        selected={this.state.selectedTabIndex === 1}
+                        renderIcon={() => <Icon name={ 'user' } size={20} color={defaultColor.grayColor}/>}
+                        renderSelectedIcon={() => <Icon name={ 'user' } size={20} color={defaultColor.greenColor}/>}
+                        onPress={() => this.tabBarSelect(1)}
+                        titleStyle={{color:defaultColor.grayColor}}
+                        selectedTitleStyle={{color:defaultColor.greenColor}}>
+                        <UserInfo navigator={this.props.navigator}/>
                     </TabNavigator.Item>
                 </TabNavigator>
             </View>

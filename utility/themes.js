@@ -36,7 +36,8 @@ export const  defaultColor = {
     greenColor:'#27aa17',
     blueColor:'#78bdf9',
     whiteColor:'#ffffff',
-    backgroundColor:'#f3f3f3'
+    backgroundColor:'#f3f3f3',
+    naviBarColor:'#555555',
 }
 
 

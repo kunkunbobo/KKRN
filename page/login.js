@@ -33,7 +33,7 @@ export default class Login extends BasePage {
     done() {
         this.props.dispatch(loginAction(this.state.name, this.state.password,(success,info)=>{
             if(success){
-                Alert.alert("提示","注册成功")
+                Alert.alert("提示","登录成功")
                 this.props.navigator.push('main')
             }
             else{

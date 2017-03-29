@@ -30,6 +30,7 @@ export default class Home extends Component {
 
     componentWillReceiveProps(props){
 
+
         if(props.route){
 
             // AsyncStorage.getAllKeys((error, keys)=>{
@@ -47,9 +48,8 @@ export default class Home extends Component {
                 }
                 this.props.dispatch({
                     type:KKNAVIGATOR_INIT_FINISH,
-                    route:this.currentRoute
+                    route:null
                 })
-
             });
 
         }
@@ -58,11 +58,7 @@ export default class Home extends Component {
     render() {
 
         return (
-     <View>
-                <Text style={{padding:100}} onPress={()=>{
-
-
-                }}>  sl</Text>
+             <View>
 
             </View>
         );

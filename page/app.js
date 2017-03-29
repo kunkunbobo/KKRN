@@ -43,7 +43,7 @@ export default class App extends Component {
                 <RouterWithRedux
                     routes={routes}
                     style={{flex:1}}
-                    navBarStyle={{backgroundColor:defaultColor.grayColor}}
+                    navBarStyle={{backgroundColor:defaultColor.naviBarColor}}
                     renderTitle={(route)=> {
 								return (
 									<View style={navigationStyles.titleView}>
@@ -53,7 +53,7 @@ export default class App extends Component {
 							}}
                     renderLeftButton={(route, navigator, index, navState)=>{
                     return  <Icon.Button
-                     style={[navigationStyles.leftButton,{backgroundColor:defaultColor.grayColor}]}
+                     style={[navigationStyles.leftButton,{backgroundColor:defaultColor.naviBarColor}]}
                      iconStyle={{marginLeft:-5}}
                      size={40}
                      name="chevron-left"

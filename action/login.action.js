@@ -28,7 +28,8 @@ export function loginAction(name,password,callBack) {
 
                     dispatch({
                         type:LOGIN_SUCCESS,
-                        token:data.data.token
+                        token:data.data.token,
+                        name:name
                     })
                     if(callBack){
                         callBack(data.success,data.data)
@@ -57,7 +58,8 @@ export function registerAction(name,password,callBack) {
             url: "http://localhost:3000/register",
             data: {
                 name,
-                password
+                password,
+                type:1
             },
             type: 'post'
         }
@@ -73,7 +75,8 @@ export function registerAction(name,password,callBack) {
 
                     dispatch({
                         type:RIGISTER_SUCCESS,
-                        token:data.data.token
+                        token:data.data.token,
+                        name:name
                     })
                     if(callBack){
                         callBack(data.success,data.data)
@@ -89,5 +92,20 @@ export function registerAction(name,password,callBack) {
             .catch((err)=> {
                 console.error(err)
             })
+    }
+}
+
+
+export const LOGIN_OUT = 'LOGIN_OUT';
+export function loginOut(callBack) {
+
+    return function (dispatch) {
+
+        dispatch({
+            type:LOGIN_OUT,
+        })
+        if(callBack){
+            callBack()
+        }
     }
 }
