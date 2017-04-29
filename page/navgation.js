@@ -231,7 +231,7 @@ export default class KKNavigator extends Component {
     present(path,ops={}){
         this.enterNewView(path,{configureScene:Navigator.SceneConfigs.VerticalUpSwipeJump});
     }
-
+    
     replace(path,ops={}){
 
         let route = {
@@ -302,7 +302,7 @@ export default class KKNavigator extends Component {
                 }
                 onDidFocus={route=>{
                 if(this.refs.navigator){
-                     console.log("this.refs.navigator.state.routeStack = ",this.refs.navigator.state.routeStack)
+                   //  console.log("this.refs.navigator.state.routeStack = ",this.refs.navigator.state.routeStack)
 
                 }
         }}

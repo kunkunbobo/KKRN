@@ -48,11 +48,11 @@ export default class Page2 extends Component {
     }
 
     componentDidMount() {
-       this.props.navigator.refeshNavBar({
-           renderLeftButton: (route, navigator, index, navState)=> {
-               return <Text onPress={()=>navigator.pop()}>返回</Text>
-           }
-       })
+       // this.props.navigator.refeshNavBar({
+       //     renderLeftButton: (route, navigator, index, navState)=> {
+       //         return <Text onPress={()=>navigator.pop()}>返回</Text>
+       //     }
+       // })
     }
 
     renderCell(rowData, sectionID, rowID){

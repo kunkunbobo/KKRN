@@ -14,7 +14,7 @@ import {connect} from 'react-redux';
 import KKNavigator from './navgation';
 import {isEmpty} from '../utility/helper';
 import {defaultColor } from '../utility/themes';
-
+import Page1 from  './page1'
 
 
 @connect(({login,navigator})=>{
@@ -32,8 +32,6 @@ export  default class CarTrack extends Component {
     }
     
     render(){
-        return <View style={{flex:1,backgroundColor:'rgba(0,0,0,0)'}}>
-
-        </View>
+        return <Page1 navigator = {this.props.navigator}/>
     }
 }

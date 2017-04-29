@@ -2,6 +2,8 @@
  * Created by yzw on 2017/3/13.
  */
 
+
+import {getToken,isEmpty} from '../utility/helper'
 export default function Request(conf) {
 
     if (!conf) {
@@ -12,28 +14,37 @@ export default function Request(conf) {
         throw new Error("conf.url is required!");
     }
 
-    let targetUrl = conf.url;
+    return getToken().then(result=>{
 
-    // request method
-    let method = (conf.type || "get").toUpperCase();
-    //set headers
-    let headers ;
-    if(conf.headers){
-        headers=new Headers(conf.headers);
-    }
-    else{
-        headers=new Headers();
-    }
+        let token =  isEmpty(result)?null: JSON.parse(result).token;
+        let targetUrl = window.$config.host + conf.url;
 
-    if (method === "POST") {
-        headers.append("content-type","application/json");
-    }
+        // request method
+        let method = (conf.type || "get").toUpperCase();
+        //set headers
+        let headers ;
+        if(conf.headers){
+            headers=new Headers(conf.headers);
+        }
+        else{
+            headers=new Headers();
+        }
+        if(!isEmpty(token)){
+            headers.append("token",token);
+        }
 
-    let options={method,headers};
-    if(conf.data){
-        options["body"]=JSON.stringify(conf.data);
-    }
-    // request
-    return fetch(targetUrl,options);
+        if (method === "POST") {
+            headers.append("content-type","application/json");
+        }
+
+        let options={method,headers};
+        if(conf.data){
+            options["body"]=JSON.stringify(conf.data);
+        }
+        // request
+        return fetch(targetUrl,options);
+
+
+    });
 
 }

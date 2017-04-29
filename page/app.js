@@ -20,9 +20,9 @@ import routes from '../router/routers';
 import reducer from '../reducer';
 import {navigationStyles,defaultColor} from "../utility/themes";
 import Icon from 'react-native-vector-icons/EvilIcons';
+import config from '../config/config';
 
-
-const RouterWithRedux = connect()(KKNavigator);
+const RouterWithRedux = connect()(KKNavigator);// KKNavigator//connect()(KKNavigator);
 const middleware = [thunkMiddleware];
 const createStoreWithMiddleware = compose(
     applyMiddleware(...middleware)
@@ -30,7 +30,7 @@ const createStoreWithMiddleware = compose(
 
 export const store = createStoreWithMiddleware(reducer, undefined, autoRehydrate());
 persistStore(store, {storage: AsyncStorage});
-
+window.$config = config[config.env];
 
 export default class App extends Component {
 
@@ -39,6 +39,7 @@ export default class App extends Component {
     }
 
     render() {
+
         return (<Provider store={store}>
                 <RouterWithRedux
                     routes={routes}

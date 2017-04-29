@@ -2,6 +2,7 @@
  * Created by yzw on 2017/3/28.
  */
 
+import {AsyncStorage} from  'react-native'
 export function isEmpty(str) {
 
     if(str==null || str == undefined || str.length == 0){
@@ -13,3 +14,17 @@ export function isEmpty(str) {
     }
     return false;
 }
+
+export function getToken() {
+
+
+    // AsyncStorage.getAllKeys((error, keys)=>{
+    //
+    //     console.log("AsyncStorage keys",keys)
+    // })
+    
+    return AsyncStorage.getItem("reduxPersist:login");
+}
+
+
+
